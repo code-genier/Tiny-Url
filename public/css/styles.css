@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* cursor: none; */
+  cursor: default;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+link{
+  display:block;
+}
+.url1{
+  font-size: 3em;
+}
+.navbar{
+  font-size: 5em;
+}
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #E8ECEF;
+}
+
+.centered {
+  display: flex;
+  flex-direction: row;
+  padding-top: 170px;
+  text-align: center;
+  height: 88vh;
+  overflow: hidden;
+}
+
+.secret-text {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  background-color: #000;
+}
+/* .login{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 300px;
+} */
+ .logintxt{
+  text-align: center;
+}
+
+.loginform{
+  padding-left: 125px;
+}
+table, thead, tbody{
+  width: 100vw;
+  padding-left: 120px;
+  padding-right: 20px;
+}
+.nav-link{
+  color: blue;
+  font-size: 0.3em;
+}
+ /* responsiveness */
+ @media only screen and (max-width: 800px){
+  .url1{
+    font-size: 1em;
+  }
+  .centered{
+    padding-top: 150px;
+    font-size: 3.5em;
+  }
+ 
+ }
+  @media only screen and (max-width: 760px){
+    .loginform{
+      padding-left: 100px;
+    }
+}
+@media only screen and (max-width: 670px){
+  .loginform{
+    padding-left: 80px;
+  }
+}
+@media only screen and (max-width: 576px){
+  .loginform{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+/*
+@media only screen and (max-width: 996px){
+  .login{
+    padding-left: 150px;
+  }
+} */
