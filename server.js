@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const userSchema = require("./models/userSchema");
+const userSchema = require("./models/userSchema.js");
 // const shortUrl = require("./models/shortUrl");
 
 const app = express();
