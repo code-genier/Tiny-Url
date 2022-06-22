@@ -164,4 +164,9 @@ app.get("/:shortUrl", async (req, res) => {
   res.redirect(url);
 });
 
-app.listen(process.env.PORT || 1234);
+
+let port = process.env.PORT;
+if(port == null || port == ""){
+  port = 1234;
+}
+app.listen(port);
