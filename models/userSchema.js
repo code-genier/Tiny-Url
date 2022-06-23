@@ -2,6 +2,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const encrypt = require("mongoose-encryption");
 const shortId = require("shortid");
+const crypto = require("crypto");
 shortId.generate();
 
 const userSchema = new mongoose.Schema({
@@ -28,9 +29,15 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
-var encKey = process.env.SOME_32BYTE_BASE64_STRING;
-var sigKey = process.env.SOME_64BYTE_BASE64_STRING;
-userSchema.plugin(encrypt, { secret : sigKey, encryptedFields: ['password'] });
+// const algorithm = "aes-256-cbc";
+// const key = process.env.SECRET;
+// const iv = crypto.randomBytes(16);
+
+// // const cipher = crypto.createCipheriv(algorithm, key, iv);
+
+// const base64 = Buffer.from(iv, 'binary').toString('base64');
+// const base32 = Buffer.from(iv, 'binary').toString('base32');
+// userSchema.plugin(encrypt, { encryptionKey: base64, signingKey: base32, encryptedFields: ['password'] });
 
 
 module.exports = mongoose.model("userSchema", userSchema);
