@@ -26,43 +26,43 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-// app.post("/register", async (req, res) => {
-//   userSchema.findOne({ email: req.body.useremail }, (e, foundUser) => {
-//     if (e) {
-//       console.log(e);
-//     } else {
-//       if (foundUser) {
-//         res.render("areg");
-//       }
-//     }
-//   });
+app.post("/register", async (req, res) => {
+  userSchema.findOne({ email: req.body.useremail }, (e, foundUser) => {
+    if (e) {
+      console.log(e);
+    } else {
+      if (foundUser) {
+        res.render("areg");
+      }
+    }
+  });
 
-//   await userSchema.create({
-//     username: req.body.username,
-//     email: req.body.useremail,
-//     password: req.body.password,
-//   });
+  await userSchema.create({
+    username: req.body.username,
+    email: req.body.useremail,
+    password: req.body.password,
+  });
 
-//   userSchema.findOne({ email: req.body.useremail }, (e, foundUser) => {
-//     if (e) {
-//       console.log(e);
-//     } else {
-//       if (foundUser) {
-//         if (foundUser.password === req.body.password) {
-//           res.render("secrets", {
-//             id: foundUser._id,
-//             name: req.body.username,
-//             userdata: foundUser.datas,
-//           });
-//         } else {
-//           res.render("opps");
-//         }
-//       } else {
-//         res.render("opps");
-//       }
-//     }
-//   });
-// });
+  userSchema.findOne({ email: req.body.useremail }, (e, foundUser) => {
+    if (e) {
+      console.log(e);
+    } else {
+      if (foundUser) {
+        if (foundUser.password === req.body.password) {
+          res.render("secrets", {
+            id: foundUser._id,
+            name: req.body.username,
+            userdata: foundUser.datas,
+          });
+        } else {
+          res.render("opps");
+        }
+      } else {
+        res.render("opps");
+      }
+    }
+  });
+});
 
 // app.post("/login", async (req, res) => {
 //   const userEmail = req.body.useremail;
