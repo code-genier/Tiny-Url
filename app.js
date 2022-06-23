@@ -12,7 +12,6 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb+srv://aayush1607:aayush1607@cluster0.ayeiopt.mongodb.net/userUrldb", {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
 });
 
 app.get("/", (req, res) => {
