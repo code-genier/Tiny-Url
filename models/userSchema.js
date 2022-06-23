@@ -29,15 +29,8 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
-// const algorithm = "aes-256-cbc";
-// const key = process.env.SECRET;
-// const iv = crypto.randomBytes(16);
 
-// // const cipher = crypto.createCipheriv(algorithm, key, iv);
-
-// const base64 = Buffer.from(iv, 'binary').toString('base64');
-// const base32 = Buffer.from(iv, 'binary').toString('base32');
-// userSchema.plugin(encrypt, { encryptionKey: base64, signingKey: base32, encryptedFields: ['password'] });
+userSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ['password'] });
 
 
 module.exports = mongoose.model("userSchema", userSchema);
