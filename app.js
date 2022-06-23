@@ -115,35 +115,35 @@ app.post("/shortUrl", async (req, res) => {
   });
 });
 
-// app.post("/delete", async (req, res) => {
-//   const deleteItem = req.body.deleteItem;
-//   const userid = req.body.userid;
-//   //   console.log(deleteItem);
+app.post("/delete", async (req, res) => {
+  const deleteItem = req.body.deleteItem;
+  const userid = req.body.userid;
+  //   console.log(deleteItem);
 
-//   await userSchema.updateOne(
-//     { _id: userid },
-//     { $pull: { datas: { _id: deleteItem } } }
-//   );
+  await userSchema.updateOne(
+    { _id: userid },
+    { $pull: { datas: { _id: deleteItem } } }
+  );
 
-//   userSchema.findOne({ _id: userid }, (e, foundUser) => {
-//     if (e) {
-//       console.log(e);
-//     } else {
-//       if (foundUser) {
-//         //   console.log(userid);
-//         // console.log(foundUser);
-//         res.render("secrets", {
-//           id: foundUser._id,
-//           name: foundUser.username,
-//           userdata: foundUser.datas,
-//         });
-//       }
-//     }
-//   });
+  userSchema.findOne({ _id: userid }, (e, foundUser) => {
+    if (e) {
+      console.log(e);
+    } else {
+      if (foundUser) {
+        //   console.log(userid);
+        // console.log(foundUser);
+        res.render("secrets", {
+          id: foundUser._id,
+          name: foundUser.username,
+          userdata: foundUser.datas,
+        });
+      }
+    }
+  });
 
-//   //   console.log(userid);
-//   //   console.log(deleteItem);
-// });
+  //   console.log(userid);
+  //   console.log(deleteItem);
+});
 
 // app.get("/:shortUrl", async (req, res) => {
 //   const need = req.params.shortUrl;
