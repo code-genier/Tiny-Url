@@ -28,10 +28,9 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
-// // userSchema.plugin(encrypt, {
-// //   secret: process.env.SECRET,
-// //   encryptedFields: ["password"],
-// // });
-// userSchema.plugin(encrypt, {secret: process.env.SECRET}, {encryptedFields: ['password'] });
+var encKey = process.env.SOME_32BYTE_BASE64_STRING;
+var sigKey = process.env.SOME_64BYTE_BASE64_STRING;
+userSchema.plugin(encrypt, { secret : sigKey, encryptedFields: ['password'] });
+
 
 module.exports = mongoose.model("userSchema", userSchema);
