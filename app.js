@@ -26,43 +26,43 @@ app.get("/register", (req, res) => {
   res.render("register");
 });
 
-app.post("/register", async (req, res) => {
-  userSchema.findOne({ email: req.body.useremail }, (e, foundUser) => {
-    if (e) {
-      console.log(e);
-    } else {
-      if (foundUser) {
-        res.render("areg");
-      }
-    }
-  });
+// app.post("/register", async (req, res) => {
+//   userSchema.findOne({ email: req.body.useremail }, (e, foundUser) => {
+//     if (e) {
+//       console.log(e);
+//     } else {
+//       if (foundUser) {
+//         res.render("areg");
+//       }
+//     }
+//   });
 
-  await userSchema.create({
-    username: req.body.username,
-    email: req.body.useremail,
-    password: req.body.password,
-  });
+//   await userSchema.create({
+//     username: req.body.username,
+//     email: req.body.useremail,
+//     password: req.body.password,
+//   });
 
-  userSchema.findOne({ email: req.body.useremail }, (e, foundUser) => {
-    if (e) {
-      console.log(e);
-    } else {
-      if (foundUser) {
-        if (foundUser.password === req.body.password) {
-          res.render("secrets", {
-            id: foundUser._id,
-            name: req.body.username,
-            userdata: foundUser.datas,
-          });
-        } else {
-          res.render("opps");
-        }
-      } else {
-        res.render("opps");
-      }
-    }
-  });
-});
+//   userSchema.findOne({ email: req.body.useremail }, (e, foundUser) => {
+//     if (e) {
+//       console.log(e);
+//     } else {
+//       if (foundUser) {
+//         if (foundUser.password === req.body.password) {
+//           res.render("secrets", {
+//             id: foundUser._id,
+//             name: req.body.username,
+//             userdata: foundUser.datas,
+//           });
+//         } else {
+//           res.render("opps");
+//         }
+//       } else {
+//         res.render("opps");
+//       }
+//     }
+//   });
+// });
 
 app.post("/login", async (req, res) => {
   const userEmail = req.body.useremail;
@@ -138,31 +138,31 @@ app.post("/delete", async (req, res) => {
   //   console.log(deleteItem);
 });
 
-app.get("/:shortUrl", async (req, res) => {
-  const need = req.params.shortUrl;
-  var partsArray = need.split("?");
+// app.get("/:shortUrl", async (req, res) => {
+//   const need = req.params.shortUrl;
+//   var partsArray = need.split("?");
 
-  const id = partsArray[0];
-  const needUrl = partsArray[1];
-  let url;
+//   const id = partsArray[0];
+//   const needUrl = partsArray[1];
+//   let url;
 
-  const needUser = await userSchema.findOne({
-    _id: id,
-  });
-  if (needUser == null) {
-    console.log("not");
-    return res.render("opps");
-  }
-  await needUser.datas.forEach((itr) => {
-    if (itr.shorts === needUrl) {
-      url = itr.full;
-      itr.clicks++;
-      needUser.save();
-    }
-  });
+//   const needUser = await userSchema.findOne({
+//     _id: id,
+//   });
+//   if (needUser == null) {
+//     console.log("not");
+//     return res.render("opps");
+//   }
+//   await needUser.datas.forEach((itr) => {
+//     if (itr.shorts === needUrl) {
+//       url = itr.full;
+//       itr.clicks++;
+//       needUser.save();
+//     }
+//   });
 
-  res.redirect(url);
-});
+//   res.redirect(url);
+// });
 
 
 let port = process.env.PORT;
