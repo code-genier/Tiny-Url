@@ -145,30 +145,35 @@ app.post("/delete", async (req, res) => {
   //   console.log(deleteItem);
 });
 
-// app.get("/:shortUrl", async (req, res) => {
-//   const need = req.params.shortUrl;
-//   var partsArray = need.split("?");
+app.get("/:shortUrl", async (req, res) => {
+  const need = req.params.shortUrl;
+  var partsArray = need.split("?");
 
-//   const id = partsArray[0];
-//   const needUrl = partsArray[1];
-//   let url;
-//   const needUser = await userSchema.findOne({
-//     _id: id,
-//   });
-//   if (needUser == null) {
-//     console.log("not");
-//     return res.render("opps");
-//   }
-//   await needUser.datas.forEach((itr) => {
-//     if (itr.shorts === needUrl) {
-//       url = itr.full;
-//       itr.clicks++;
-//       needUser.save();
-//     }
-//   });
+  const id = partsArray[0];
+  const needUrl = partsArray[1];
+  let url;
 
-//   res.redirect(url);
-// });
+  if(id == ""){
+    return res.render("opps");
+  }
+
+  const needUser = await userSchema.findOne({
+    _id: id,
+  });
+  if (needUser == null) {
+    console.log("not");
+    return res.render("opps");
+  }
+  await needUser.datas.forEach((itr) => {
+    if (itr.shorts === needUrl) {
+      url = itr.full;
+      itr.clicks++;
+      needUser.save();
+    }
+  });
+
+  res.redirect(url);
+});
 
 
 let port = process.env.PORT;
