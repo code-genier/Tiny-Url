@@ -64,33 +64,33 @@ app.post("/register", async (req, res) => {
   });
 });
 
-// app.post("/login", async (req, res) => {
-//   const userEmail = req.body.useremail;
-//   const userPassword = req.body.password;
+app.post("/login", async (req, res) => {
+  const userEmail = req.body.useremail;
+  const userPassword = req.body.password;
 
-//   userSchema.findOne({ email: userEmail }, (e, foundUser) => {
-//     if (e) {
-//       console.log(e);
-//     } else {
-//       if (foundUser) {
-//         // console.log(foundUser);
-//         if (foundUser.password === userPassword) {
-//           res.render("secrets", {
-//             id: foundUser._id,
-//             name: foundUser.username,
-//             userdata: foundUser.datas,
-//           });
-//         }
-//         else{
-//           res.render('opps');
-//         }
-//       }
-//       else{
-//         res.render('opps');
-//       }
-//     }
-//   });
-// });
+  userSchema.findOne({ email: userEmail }, (e, foundUser) => {
+    if (e) {
+      console.log(e);
+    } else {
+      if (foundUser) {
+        // console.log(foundUser);
+        if (foundUser.password === userPassword) {
+          res.render("secrets", {
+            id: foundUser._id,
+            name: foundUser.username,
+            userdata: foundUser.datas,
+          });
+        }
+        else{
+          res.render('opps');
+        }
+      }
+      else{
+        res.render('opps');
+      }
+    }
+  });
+});
 
 app.post("/shortUrl", async (req, res) => {
   const id = req.body.id;
@@ -152,7 +152,6 @@ app.post("/shortUrl", async (req, res) => {
 //   const id = partsArray[0];
 //   const needUrl = partsArray[1];
 //   let url;
-
 //   const needUser = await userSchema.findOne({
 //     _id: id,
 //   });
