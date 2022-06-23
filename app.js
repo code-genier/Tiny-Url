@@ -92,28 +92,28 @@ app.post("/register", async (req, res) => {
 //   });
 // });
 
-// app.post("/shortUrl", async (req, res) => {
-//   const id = req.body.id;
-//   //   console.log(id);
-//   await userSchema.updateOne(
-//     { _id: id },
-//     { $push: { datas: { full: req.body.fullUrl } } }
-//   );
+app.post("/shortUrl", async (req, res) => {
+  const id = req.body.id;
+  //   console.log(id);
+  await userSchema.updateOne(
+    { _id: id },
+    { $push: { datas: { full: req.body.fullUrl } } }
+  );
 
-//   userSchema.findOne({ _id: id }, (e, foundUser) => {
-//     if (e) {
-//       console.log(e);
-//     } else {
-//       if (foundUser) {
-//         res.render("secrets", {
-//           id: foundUser._id,
-//           name: foundUser.username,
-//           userdata: foundUser.datas,
-//         });
-//       }
-//     }
-//   });
-// });
+  userSchema.findOne({ _id: id }, (e, foundUser) => {
+    if (e) {
+      console.log(e);
+    } else {
+      if (foundUser) {
+        res.render("secrets", {
+          id: foundUser._id,
+          name: foundUser.username,
+          userdata: foundUser.datas,
+        });
+      }
+    }
+  });
+});
 
 // app.post("/delete", async (req, res) => {
 //   const deleteItem = req.body.deleteItem;
